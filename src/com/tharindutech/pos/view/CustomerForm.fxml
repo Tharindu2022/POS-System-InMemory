@@ -50,7 +50,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </TextField>
-      <JFXButton layoutX="447.0" layoutY="97.0" onAction="#saveCustomerOnAction" prefHeight="33.0" prefWidth="132.0" style="-fx-background-color: #2980b9;" text="Save  Customer" textFill="#f5ece8">
+      <JFXButton fx:id="btnSaveCustomer" layoutX="447.0" layoutY="97.0" onAction="#saveCustomerOnAction" prefHeight="33.0" prefWidth="132.0" style="-fx-background-color: #2980b9;" text="Save  Customer" textFill="#f5ece8">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

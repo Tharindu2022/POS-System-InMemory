@@ -1,5 +1,6 @@
 package com.tharindutech.pos.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.tharindutech.pos.db.DataBase;
 import com.tharindutech.pos.model.Customer;
 import com.tharindutech.pos.view.tm.CustomerTM;
@@ -25,6 +26,7 @@ public class CustomerFormController {
     public TableColumn colAddress;
     public TableColumn colSalary;
     public TableColumn colOptions;
+    public JFXButton btnSaveCustomer;
 
     public void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -33,6 +35,17 @@ public class CustomerFormController {
         colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
         colOptions.setCellValueFactory(new PropertyValueFactory<>("btn"));
         searchCustomers();
+
+        tblCustomer.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            setData(newValue);
+        });
+    }
+
+    private void setData(CustomerTM tm) {
+        txtId.setText(tm.getId());
+        txtName.setText(tm.getName());
+        txtAddress.setText(tm.getAddress());
+        txtSalary.setText(String.valueOf(tm.getSalary()));
     }
 
     private void searchCustomers() {
@@ -61,14 +74,21 @@ public class CustomerFormController {
 
     public void saveCustomerOnAction(ActionEvent actionEvent) {
         Customer c = new Customer(txtId.getText(), txtName.getText(), txtAddress.getText(), Double.parseDouble(txtSalary.getText()));
-        boolean isSaved = DataBase.customerTable.add(c);
-        if (isSaved) {
-            searchCustomers();
-            clearFields();
-            new Alert(Alert.AlertType.INFORMATION, "Customer Saved Successfully").show();
+
+        if (btnSaveCustomer.getText().equalsIgnoreCase("Save Customer")) {
+            boolean isSaved = DataBase.customerTable.add(c);
+            if (isSaved) {
+                searchCustomers();
+                clearFields();
+                new Alert(Alert.AlertType.INFORMATION, "Customer Saved Successfully").show();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Try Again !").show();
+            }
         } else {
-            new Alert(Alert.AlertType.WARNING, "Try Again !").show();
+            // update
         }
+
+
     }
 
     private void clearFields() {
