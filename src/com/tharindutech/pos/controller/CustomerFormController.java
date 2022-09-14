@@ -7,10 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableListBase;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class CustomerFormController {
 
@@ -19,9 +16,15 @@ public class CustomerFormController {
     public TextField txtName;
     public TextField txtAddress;
     public TextField txtSalary;
-    public TableView tblCustomer;
+    public TableView<CustomerTM> tblCustomer;
+    public TableColumn colId;
+    public TableColumn colName;
+    public TableColumn colAddress;
+    public TableColumn colSalary;
+    public TableColumn colOptions;
 
     public  void initialize(){
+
         txtId.setText().;
 
         searchCustomers();
