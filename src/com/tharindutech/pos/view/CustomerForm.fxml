@@ -25,22 +25,22 @@
          </font>
       </JFXButton>
       <Separator layoutX="139.0" layoutY="54.0" prefHeight="7.0" prefWidth="301.0" />
-      <TextField layoutX="7.0" layoutY="81.0" prefHeight="31.0" prefWidth="125.0" promptText="Customer ID">
+      <TextField fx:id="txtId" layoutX="7.0" layoutY="81.0" prefHeight="31.0" prefWidth="125.0" promptText="Customer ID">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </TextField>
-      <TextField layoutX="150.0" layoutY="81.0" prefHeight="31.0" prefWidth="132.0" promptText="Name">
+      <TextField fx:id="txtName" layoutX="150.0" layoutY="81.0" prefHeight="31.0" prefWidth="132.0" promptText="Name">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </TextField>
-      <TextField layoutX="290.0" layoutY="81.0" prefHeight="31.0" prefWidth="117.0" promptText="Address">
+      <TextField fx:id="txtAddress" layoutX="290.0" layoutY="81.0" prefHeight="31.0" prefWidth="117.0" promptText="Address">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </TextField>
-      <TextField layoutX="413.0" layoutY="81.0" prefHeight="31.0" prefWidth="132.0" promptText="Salary">
+      <TextField fx:id="txtSalary" layoutX="413.0" layoutY="81.0" prefHeight="31.0" prefWidth="132.0" promptText="Salary">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -50,7 +50,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </TextField>
-      <JFXButton layoutX="454.0" layoutY="125.0" prefHeight="33.0" prefWidth="132.0" style="-fx-background-color: #2980b9;" text="Save  Customer" textFill="#f5ece8">
+      <JFXButton layoutX="454.0" layoutY="125.0" onAction="#saveCustomerOnAction" prefHeight="33.0" prefWidth="132.0" style="-fx-background-color: #2980b9;" text="Save  Customer" textFill="#f5ece8">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -59,8 +59,8 @@
         <columns>
           <TableColumn prefWidth="85.0" text="Id" />
           <TableColumn prefWidth="127.0" text="Name" />
-            <TableColumn prefWidth="99.0" text="Salary" />
-            <TableColumn prefWidth="144.0" text="Address" />
+            <TableColumn prefWidth="99.0" text="Address" />
+            <TableColumn prefWidth="144.0" text="Salary" />
             <TableColumn prefWidth="113.0" text="Options" />
         </columns>
       </TableView>
