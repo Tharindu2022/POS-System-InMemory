@@ -25,7 +25,7 @@ public class CustomerFormController {
 
     public  void initialize(){
 
-        txtId.setText().;
+       // txtId.setText().;
 
         searchCustomers();
     }
