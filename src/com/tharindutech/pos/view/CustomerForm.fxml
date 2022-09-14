@@ -50,12 +50,12 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </TextField>
-      <JFXButton fx:id="btnSaveCustomer" layoutX="447.0" layoutY="97.0" onAction="#saveCustomerOnAction" prefHeight="33.0" prefWidth="132.0" style="-fx-background-color: #2980b9;" text="Save  Customer" textFill="#f5ece8">
+      <JFXButton fx:id="btnSaveCustomer" layoutX="447.0" layoutY="97.0" onAction="#saveCustomerOnAction" prefHeight="33.0" prefWidth="132.0" style="-fx-background-color: #2980b9;" text="Save Customer" textFill="#f5ece8">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tblCustomer" layoutX="14.0" layoutY="137.0" prefHeight="254.0" prefWidth="569.0">
+      <TableView fx:id="tblCustomer" layoutX="14.0" layoutY="137.0" prefHeight="215.0" prefWidth="569.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="85.0" text="Id" />
           <TableColumn fx:id="colName" prefWidth="127.0" text="Name" />

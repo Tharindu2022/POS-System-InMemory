@@ -37,7 +37,8 @@ public class CustomerFormController {
         searchCustomers();
 
         tblCustomer.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            setData(newValue);
+            if (null != newValue) //better than (newValue!=null)
+                setData(newValue);
         });
     }
 
@@ -46,6 +47,7 @@ public class CustomerFormController {
         txtName.setText(tm.getName());
         txtAddress.setText(tm.getAddress());
         txtSalary.setText(String.valueOf(tm.getSalary()));
+        btnSaveCustomer.setText("Update Customer");
     }
 
     private void searchCustomers() {
@@ -74,7 +76,6 @@ public class CustomerFormController {
 
     public void saveCustomerOnAction(ActionEvent actionEvent) {
         Customer c = new Customer(txtId.getText(), txtName.getText(), txtAddress.getText(), Double.parseDouble(txtSalary.getText()));
-
         if (btnSaveCustomer.getText().equalsIgnoreCase("Save Customer")) {
             boolean isSaved = DataBase.customerTable.add(c);
             if (isSaved) {
@@ -85,7 +86,18 @@ public class CustomerFormController {
                 new Alert(Alert.AlertType.WARNING, "Try Again !").show();
             }
         } else {
-            // update
+            for (int i = 0; i < DataBase.customerTable.size(); i++) {
+                if (txtId.getText().equalsIgnoreCase(DataBase.customerTable.get(i).getId())) {
+                    DataBase.customerTable.get(i).setName(txtName.getText());
+                    DataBase.customerTable.get(i).setAddress(txtAddress.getText());
+                    DataBase.customerTable.get(i).setSalary(Double.parseDouble(txtSalary.getText()));
+                    searchCustomers();
+                    new Alert(Alert.AlertType.INFORMATION,"Customer Updated Sucessfully").show();
+                }
+
+            }
+
+
         }
 
 
@@ -96,7 +108,5 @@ public class CustomerFormController {
         txtName.clear();
         txtAddress.clear();
         txtSalary.clear();
-
-
     }
 }
