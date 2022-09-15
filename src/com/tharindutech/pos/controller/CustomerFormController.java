@@ -119,10 +119,7 @@ public class CustomerFormController {
 
             }
 
-
         }
-
-
     }
 
     private void clearFields() {

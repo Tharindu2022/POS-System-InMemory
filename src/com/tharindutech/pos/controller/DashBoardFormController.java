@@ -36,7 +36,8 @@ public class DashBoardFormController {
 
 
 
-    public void openItemFormOnAction(ActionEvent actionEvent) {
+    public void openItemFormOnAction(ActionEvent actionEvent) throws IOException {
+        setUi("ItemForm");
     }
 
     public void openPlaceOrderFormOnAction(ActionEvent actionEvent) {
@@ -48,6 +49,7 @@ public class DashBoardFormController {
     public void openCustomerFormOnAction(ActionEvent actionEvent) throws IOException {
         setUi("CustomerForm");
     }
+
     private void setUi(String ui) throws IOException {
         Stage stage = (Stage) dashboardContext.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+ui+".fxml"))));
