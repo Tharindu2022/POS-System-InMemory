@@ -40,7 +40,8 @@ public class DashBoardFormController {
         setUi("ItemForm");
     }
 
-    public void openPlaceOrderFormOnAction(ActionEvent actionEvent) {
+    public void openPlaceOrderFormOnAction(ActionEvent actionEvent) throws IOException {
+        setUi("PlaceOrderForm");
     }
 
     public void openOrderDetailsFormOnAction(ActionEvent actionEvent) {
@@ -55,6 +56,7 @@ public class DashBoardFormController {
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+ui+".fxml"))));
         stage.centerOnScreen();
     }
+
 
 
 }
