@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="543.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tharindutech.pos.controller.PlaceOrderFormController">
+<AnchorPane fx:id="placeOrderFormContext" prefHeight="543.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tharindutech.pos.controller.PlaceOrderFormController">
    <children>
-      <JFXButton buttonType="RAISED" layoutX="23.0" layoutY="9.0" prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #A3CB38;" text="Back To Home">
+      <JFXButton buttonType="RAISED" layoutX="23.0" layoutY="9.0" onAction="#backToHomeOnAction" prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #A3CB38;" text="Back To Home">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
