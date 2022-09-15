@@ -45,7 +45,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </TextField>
-      <TextField layoutX="10.0" layoutY="98.0" prefHeight="31.0" prefWidth="433.0" promptText="Search Customer">
+      <TextField fx:id="txtSearch" layoutX="10.0" layoutY="98.0" prefHeight="31.0" prefWidth="433.0" promptText="Search Customer">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
