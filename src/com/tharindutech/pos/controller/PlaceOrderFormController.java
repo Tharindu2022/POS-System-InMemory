@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -77,16 +78,16 @@ public class PlaceOrderFormController {
     }
 
     private void setOrderId() {
-        if (DataBase.orderTable.isEmpty()){
+        if (DataBase.orderTable.isEmpty()) {
             txtOrderId.setText("D-1");
             return;
         }
 
-        String tempOrderId=DataBase.orderTable.get(DataBase.orderTable.size()-1).getOrderId();
-          String array[]=tempOrderId.split("-");//[D,3]
-        int tempNumber=Integer.parseInt(array[1]);
-        int finalizeOrderId=tempNumber+1;
-        txtOrderId.setText("D-"+finalizeOrderId);
+        String tempOrderId = DataBase.orderTable.get(DataBase.orderTable.size() - 1).getOrderId();
+        String array[] = tempOrderId.split("-");//[D,3]
+        int tempNumber = Integer.parseInt(array[1]);
+        int finalizeOrderId = tempNumber + 1;
+        txtOrderId.setText("D-" + finalizeOrderId);
 
     }
 
@@ -134,10 +135,29 @@ public class PlaceOrderFormController {
         txtDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
     }
 
+    private boolean checkQty(String code, int qty) {
+        for (Item item : DataBase.itemTable) {
+            if (code.equals(item.getCode())) {
+                if (item.getQtyOnHand() >= qty) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+
 
     ObservableList<CartTM> obList = FXCollections.observableArrayList();
 
     public void addToCartOnAction(ActionEvent actionEvent) {
+
+        if (!checkQty(cmbItemCodes.getValue(), Integer.parseInt(txtQty.getText()))) {
+            new Alert(Alert.AlertType.WARNING, "Out of Stock").show();
+            return;
+        }
+
         double unitPrice = Double.parseDouble(txtUnitPrice.getText());
         int qty = Integer.parseInt(txtQty.getText());
         double total = unitPrice * qty;
@@ -151,6 +171,12 @@ public class PlaceOrderFormController {
         } else {
             int tmpQty = obList.get(row).getQty() + qty;
             double tmpTotal = unitPrice * tmpQty;
+
+            if (!checkQty(cmbItemCodes.getValue(), tmpQty)) {
+                new Alert(Alert.AlertType.WARNING, "Out of Stock").show();
+                return;
+            }
+
             obList.get(row).setQty(tmpQty);
             obList.get(row).setTotal(tmpTotal);
             tblCart.refresh();
@@ -158,6 +184,7 @@ public class PlaceOrderFormController {
         calculateTotal();
         clearFields();
         cmbItemCodes.requestFocus();
+
 
         btn.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
@@ -201,10 +228,10 @@ public class PlaceOrderFormController {
     }
 
     private void manageQty() {
-        for (CartTM tm:obList) {
-            for (Item i:DataBase.itemTable) {
-                if(i.getCode().equals(tm.getCode())){
-                    i.setQtyOnHand(i.getQtyOnHand()-tm.getQty());
+        for (CartTM tm : obList) {
+            for (Item i : DataBase.itemTable) {
+                if (i.getCode().equals(tm.getCode())) {
+                    i.setQtyOnHand(i.getQtyOnHand() - tm.getQty());
                     break;
                 }
             }
